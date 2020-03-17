@@ -39,29 +39,8 @@ public class QuranListFragment extends Fragment {
 
     private void updateUI() {
         QuranFahras quranFahras = QuranFahras.get(getActivity());
-        Toast.makeText(getActivity(), "the size is "+quranFahras.getFahras().size(), Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getActivity(), "the size is "+quranFahras.getFahras().size(), Toast.LENGTH_SHORT).show();
         List<Quran> quranList = quranFahras.getFahras();
-
-
-
-       /*
-        LinkedHashSet<Quran> hashSet = new LinkedHashSet<>(quranList);
-
-        ArrayList<Quran> listWithoutDuplicates = new ArrayList<>(hashSet);
-
-*/
-
-        //List<Quran>updatedList=new ArrayList<>();
-
-        //ArrayList<String> values=new ArrayList<String>();
-      /*  HashSet<Quran> hashSet = new HashSet<Quran>();
-        hashSet.addAll(quranList);
-        quranList.clear();
-        quranList.addAll(hashSet);*/
-
-
-
-        //Toast.makeText(getActivity(),"" + quranList.size()  +"and "+listWithoutDuplicates.size(),Toast.LENGTH_SHORT).show();
 
         mAdapter = new QuranAdapter(quranList);
         mCrimeRecyclerView.setAdapter(mAdapter);
@@ -100,27 +79,33 @@ public class QuranListFragment extends Fragment {
 
         private TextView mSurahNameTextView;
         private TextView mSurahIdTextView;
+        private TextView mSurahAyhNoTextView;
+        private TextView mSurahTypeTextView;
+
         private Quran mQuran;
 
         public QuraneHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_list_quran, parent, false));
-           // itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
             mSurahNameTextView = (TextView) itemView.findViewById(R.id.surah_name);
             mSurahIdTextView = (TextView) itemView.findViewById(R.id.surah_id) ;
-
+            mSurahAyhNoTextView = (TextView) itemView.findViewById(R.id.ayh_count) ;
+            mSurahTypeTextView =  (TextView) itemView.findViewById(R.id.surh_type) ;
         }
 
         public void bind(Quran quran) {
             mQuran = quran;
-            mSurahNameTextView.setText(mQuran.getSurhName());
+            mSurahNameTextView.setText("سورة "+mQuran.getSurhName());
             mSurahIdTextView.setText(mQuran.getSurhNumber());
-        }
+            mSurahAyhNoTextView.setText("عدد الآيات : "+mQuran.getSurhayhNumbers());
+            mSurahTypeTextView.setText(mQuran.getSurhtype());
 
+        }
         @Override
         public void onClick(View v) {
 
-          //  Toast.makeText(getActivity(),  "Id= "+mCrime.getId() + " Title = " + mCrime.getTitle() + " clicked!", Toast.LENGTH_SHORT) .show();
+            Toast.makeText(getActivity(),  "Id= " + mQuran.getSurhNumber() + " Title = " + mQuran.getSurhName() + " clicked!", Toast.LENGTH_SHORT) .show();
 
         }
     }

@@ -49,6 +49,8 @@ public class QuranFahras {
             int cols = s.getColumns();
             Cell sid =null;
             Cell sna =null;
+            Cell sAyhCount =null;
+            Cell sType =null;
             int i =0 , j= 0 ;
             Quran quran = null;
             for ( i = 1; i < row  ; i++) {
@@ -56,14 +58,21 @@ public class QuranFahras {
 
                      sid = s.getCell(1, i);
                      sna = s.getCell( 0, i);
+                     sAyhCount= s.getCell( 2, i);
+                     sType= s.getCell( 3, i);
+
+
                     quran.setSurhName(sid.getContents());
                     quran.setSurhNumber(sna.getContents());
+                    quran.setSurhayhNumbers(sAyhCount.getContents());
+                    quran.setSurhtype(sType.getContents());
+
                     mQurans.add(quran);
 
             }
 
 
-
+/*
             for ( i = 0; i < mQurans.size(); i++)
             {
                 boolean isDistinct = false;
@@ -80,8 +89,8 @@ public class QuranFahras {
                 {
                     mQuranFahras.add(mQurans.get(i));
                                     }
-                Toast.makeText(context,  "  surah Id = " + isDistinct , Toast.LENGTH_SHORT).show();
-            }
+              //  Toast.makeText(context,  "  surah Id = " + isDistinct , Toast.LENGTH_SHORT).show();
+            }*/
 
 
 
@@ -132,7 +141,7 @@ public class QuranFahras {
 
 
 
-        return mQuranFahras;
+        return mQurans;
     }
 
 

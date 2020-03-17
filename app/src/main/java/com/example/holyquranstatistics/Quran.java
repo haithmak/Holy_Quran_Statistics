@@ -4,9 +4,22 @@ public class Quran {
 
     private String surhName;
     private String surhNumber;
+    private String surhayhNumbers;
     private String ayhNumber;
-    private String ayhtype;
+    private String surhtype;
+
+    public String getSurhayhNumbers() {
+        return surhayhNumbers;
+    }
+
+    public void setSurhayhNumbers(String surhayhNumbers) {
+        this.surhayhNumbers = surhayhNumbers;
+    }
+
     private String jzaNumber;
+
+
+
 
     public String getSurhName() {
         return surhName;
@@ -32,12 +45,12 @@ public class Quran {
         this.ayhNumber = ayhNumber;
     }
 
-    public String getAyhtype() {
-        return ayhtype;
+    public String getSurhtype() {
+        return surhtype;
     }
 
-    public void setAyhtype(String ayhtype) {
-        this.ayhtype = ayhtype;
+    public void setSurhtype(String ayhtype) {
+        this.surhtype = ayhtype;
     }
 
     public String getJzaNumber() {
