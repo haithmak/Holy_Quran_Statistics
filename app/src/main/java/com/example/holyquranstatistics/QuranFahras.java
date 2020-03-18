@@ -139,10 +139,18 @@ public class QuranFahras {
 
     public List<Quran> getFahras() {
 
-
-
         return mQurans;
     }
+
+    public Quran getFahrass (int id){
+        for (Quran q : mQurans) {
+            if (q.getSurhNumber().equals(id)) {
+                return q;
+            }
+        }
+        return null;
+    }
+
 
 
 

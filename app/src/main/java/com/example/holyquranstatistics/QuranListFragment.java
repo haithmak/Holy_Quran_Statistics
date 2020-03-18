@@ -42,9 +42,15 @@ public class QuranListFragment extends Fragment {
         QuranFahras quranFahras = QuranFahras.get(getActivity());
       //  Toast.makeText(getActivity(), "the size is "+quranFahras.getFahras().size(), Toast.LENGTH_SHORT).show();
         List<Quran> quranList = quranFahras.getFahras();
+        if (mAdapter == null) {
+            mAdapter = new QuranAdapter(quranList);
+            mCrimeRecyclerView.setAdapter(mAdapter);
+        }
+        else
+        {
+            mAdapter.notifyDataSetChanged();
+        }
 
-        mAdapter = new QuranAdapter(quranList);
-        mCrimeRecyclerView.setAdapter(mAdapter);
     }
 
 
@@ -92,6 +98,7 @@ public class QuranListFragment extends Fragment {
         private Quran mQuran;
         private int startSurhFrom ;
 
+        private static final int REQUEST_SURH = 1 ;
 
         public QuraneHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_list_quran, parent, false));
@@ -121,8 +128,7 @@ public class QuranListFragment extends Fragment {
          //   Intent intent = MainActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhayhNumbers() , StartAyhFrom);
 
             Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
-
-            startActivity(intent);
+            startActivityForResult(intent ,REQUEST_SURH );
 
         }
     }

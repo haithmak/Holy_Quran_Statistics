@@ -35,6 +35,7 @@ public class MainActivity extends SingleFragmentActivity {
 
     public static final String EXTRA_AYH_START = "FROM";
 
+    private static final String ARG_SURH_ID = "SURH_ID_";
 
    // public static final int x = 0;
 
@@ -45,20 +46,19 @@ public class MainActivity extends SingleFragmentActivity {
         bundle.putInt(EXTRA_SURH_ID, surhID);
         bundle.putString(EXTRA_SURH_NAME, surhName);
         bundle.putString(EXTRA_AYHT_COUNT, surhayhNumbers);
-
         bundle.putInt(EXTRA_AYH_START, startSurhFrom);
         intent.putExtras(bundle);
-
-        //intent.putExtra(EXTRA_SURH_ID, surhID);
-        //intent.putExtra(EXTRA_AYHT_COUNT, surhayhNumbers);
-        //intent.putExtra(EXTRA_AYH_START, ayhStart);
 
 
         return intent;
     }
     @Override
     protected Fragment createFragment() {
-        return new QuranFragment();
+
+        // int surhID = (int) getIntent().getSerializableExtra(ARG_SURH_ID);
+        // return  QuranFragment.newInstance(surhID) ;
+        return new QuranListFragment() ;
+
     }
 
 
