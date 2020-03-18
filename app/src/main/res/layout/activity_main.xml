@@ -12,9 +12,10 @@
         android:id="@+id/Surh_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/uthmanic_hafs_ver12"
         android:gravity="top"
-        android:textSize="26sp"
+        android:maxLines="14"
+        android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         android:textDirection="anyRtl"
@@ -25,11 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/uthmanic_hafs_ver12"
-        android:gravity="center_horizontal"
-        android:maxLines="12"
+        android:gravity="center"
+        android:maxLines="14"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
-         android:layout_margin="16dp"
+          android:layout_margin="16dp"
         android:textDirection="anyRtl" />
 
 </LinearLayout>
