@@ -30,17 +30,23 @@ public class MainActivity extends SingleFragmentActivity {
 
 
     public static final String EXTRA_SURH_ID = "SURH_ID";
+    public static final String EXTRA_SURH_NAME = "COW";
     public static final String EXTRA_AYHT_COUNT = "AYHT_COUNT";
+
     public static final String EXTRA_AYH_START = "FROM";
+
+
    // public static final int x = 0;
 
-    public static Intent newIntent(Context packageContext, String surhID , String surhayhNumbers , String ayhStart) {
+    public static Intent newIntent(Context packageContext, int surhID , String surhName,  String surhayhNumbers , int startSurhFrom) {
 
         Intent intent = new Intent(packageContext, MainActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_SURH_ID, surhID);
+        bundle.putInt(EXTRA_SURH_ID, surhID);
+        bundle.putString(EXTRA_SURH_NAME, surhName);
         bundle.putString(EXTRA_AYHT_COUNT, surhayhNumbers);
-        bundle.putString(EXTRA_AYH_START, ayhStart);
+
+        bundle.putInt(EXTRA_AYH_START, startSurhFrom);
         intent.putExtras(bundle);
 
         //intent.putExtra(EXTRA_SURH_ID, surhID);

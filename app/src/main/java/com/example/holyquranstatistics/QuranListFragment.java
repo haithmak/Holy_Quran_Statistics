@@ -90,7 +90,7 @@ public class QuranListFragment extends Fragment {
         private TextView mSurahTypeTextView;
 
         private Quran mQuran;
-        private String StartAyhFrom ;
+        private int startSurhFrom ;
 
 
         public QuraneHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -109,7 +109,7 @@ public class QuranListFragment extends Fragment {
             mSurahIdTextView.setText(mQuran.getSurhNumber());
             mSurahAyhNoTextView.setText("عدد الآيات : "+mQuran.getSurhayhNumbers());
             mSurahTypeTextView.setText(mQuran.getSurhtype());
-            StartAyhFrom= String.valueOf(i) ;
+            startSurhFrom= i ;
         }
         @Override
         public void onClick(View v) {
@@ -118,8 +118,9 @@ public class QuranListFragment extends Fragment {
          //   Toast.makeText(getActivity(),  "Id= " + mQuran.getSurhNumber() + " Count = " + mQuran.getSurhayhNumbers() + "Start = "+ StartAyhFrom + " clicked!", Toast.LENGTH_SHORT) .show();
 
 
-            Intent intent = MainActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhayhNumbers() , StartAyhFrom);
+         //   Intent intent = MainActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhayhNumbers() , StartAyhFrom);
 
+            Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
 
             startActivity(intent);
 

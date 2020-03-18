@@ -21,10 +21,12 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 public class QuranFragment extends Fragment {
-    TextView tx ;
+    TextView tx , txSurhTitle ;
     Quran mQuran;
-    int surhayhNumbersf ;
-    int surhIdf  , st_Read;
+
+    int surhId  , startSurhFrom=0 ,surhayhCount =0 , finshSurh=0;
+    Bundle bundle ;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,33 +37,40 @@ public class QuranFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_main, container, false);
-        Bundle bundle = getActivity().getIntent().getExtras();
+
+        bundle = getActivity().getIntent().getExtras();
+
+        surhId = bundle.getInt(MainActivity.EXTRA_SURH_ID);
+
+        String surhName = bundle.getString(MainActivity.EXTRA_SURH_NAME);
+
+        surhayhCount = Integer.parseInt(bundle.getString(MainActivity.EXTRA_AYHT_COUNT));
+
+        startSurhFrom = bundle.getInt(MainActivity.EXTRA_AYH_START);
 
 
-        String surhId = bundle.getString(MainActivity.EXTRA_SURH_ID);
-
-        String  surhayhNumbers = bundle.getString(MainActivity.EXTRA_AYHT_COUNT);
-
-        String  surhaStart = bundle.getString(MainActivity.EXTRA_AYH_START);
 
 
+        finshSurh= surhayhCount + startSurhFrom ;
 
-        surhIdf = Integer.parseInt(surhId) ;
-        surhayhNumbersf= Integer.parseInt(surhayhNumbers) ;
-        st_Read= Integer.parseInt(surhaStart)  ;
-        Toast.makeText(getActivity(),  "Id= " + surhIdf + " Count = " + surhayhNumbersf , Toast.LENGTH_SHORT) .show();
+        Toast.makeText(getActivity(),  "Id= " + surhId + " Count = " + finshSurh , Toast.LENGTH_SHORT) .show();
       // mQuran = QuranFahras.get(getActivity()).getFahras(surhId);
 
 
         tx = (TextView) v.findViewById(R.id.multiAutoCompleteTextView) ;
+        txSurhTitle= (TextView) v.findViewById(R.id.Surh_title) ;
 
-       tx.setText(readAyh(surhId));
+
+
+        tx.setText(readAyh(surhId));
+        txSurhTitle.setText("سورة " + surhName);
+
 
         return v;
     }
 
 
-    public String readAyh( String surhId) {
+    public String readAyh( int surhId) {
         AssetManager  am = getActivity().getAssets();
         Workbook workbook = null;
         try {
@@ -72,35 +81,35 @@ public class QuranFragment extends Fragment {
             int row = s.getRows();
             int cols = s.getColumns();
             String xx = "";
-            Cell sid =null;
-            Cell sna =null;
-            Cell sAyhCount =null;
+           // Cell sid =null;
+            //Cell sna =null;
+            //Cell sAyhCount =null;
             Cell ayht =null;
             Cell ayahC =null;
 
            //sid = s.getCell( 0, i);
 
-            if (surhIdf==1) {
-                st_Read =1;
+            if (surhId==1) {
+                startSurhFrom =1;
             }
             else {
-                st_Read+=surhIdf-2 ;
+                startSurhFrom+=surhId-2 ;
             }
 
-            Toast.makeText(getActivity(),  "Str= " + st_Read + " Count = " +surhayhNumbersf , Toast.LENGTH_SHORT) .show();
+            Toast.makeText(getActivity(),  "Str= " + startSurhFrom + " Count = " +finshSurh , Toast.LENGTH_SHORT) .show();
 
-            for (int j = st_Read ; j < surhayhNumbersf+st_Read ; j++){
+            for (int j = startSurhFrom ; j < finshSurh ; j++){
 
                 ayht= s.getCell( 2, j);
                 ayahC=s.getCell( 3, j);
 
+
                 xx = xx + ayht.getContents() + convert_number_of_ayah(ayahC.getContents()) + " ";
 
-
-
             }
-            st_Read=0;
-            surhIdf=0;
+            startSurhFrom=0;
+            surhId=0;
+
 
             return xx;
 
