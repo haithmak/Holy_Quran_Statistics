@@ -1,5 +1,6 @@
 package com.example.holyquranstatistics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,8 +65,14 @@ public class QuranListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull QuraneHolder holder, int position) {
+            int st_read=1;
             Quran quran = mQurans.get(position);
-            holder.bind(quran) ;
+            for (int i=0; i<position;i++){
+                st_read +=Integer.parseInt(mQurans.get(i).getSurhayhNumbers()) ;
+            }
+
+
+            holder.bind(quran ,st_read) ;
         }
 
         @Override
@@ -83,6 +90,8 @@ public class QuranListFragment extends Fragment {
         private TextView mSurahTypeTextView;
 
         private Quran mQuran;
+        private String StartAyhFrom ;
+
 
         public QuraneHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_list_quran, parent, false));
@@ -94,18 +103,25 @@ public class QuranListFragment extends Fragment {
             mSurahTypeTextView =  (TextView) itemView.findViewById(R.id.surh_type) ;
         }
 
-        public void bind(Quran quran) {
+        public void bind(Quran quran , int i) {
             mQuran = quran;
             mSurahNameTextView.setText("سورة "+mQuran.getSurhName());
             mSurahIdTextView.setText(mQuran.getSurhNumber());
             mSurahAyhNoTextView.setText("عدد الآيات : "+mQuran.getSurhayhNumbers());
             mSurahTypeTextView.setText(mQuran.getSurhtype());
-
+            StartAyhFrom= String.valueOf(i) ;
         }
         @Override
         public void onClick(View v) {
+           // String [] ayhtCount = mQuran.getSurhayhNumbers().split(":");
 
-            Toast.makeText(getActivity(),  "Id= " + mQuran.getSurhNumber() + " Title = " + mQuran.getSurhName() + " clicked!", Toast.LENGTH_SHORT) .show();
+         //   Toast.makeText(getActivity(),  "Id= " + mQuran.getSurhNumber() + " Count = " + mQuran.getSurhayhNumbers() + "Start = "+ StartAyhFrom + " clicked!", Toast.LENGTH_SHORT) .show();
+
+
+            Intent intent = MainActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhayhNumbers() , StartAyhFrom);
+
+
+            startActivity(intent);
 
         }
     }

@@ -4,19 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:orientation="horizontal"
+   android:orientation="vertical"
     android:layoutDirection="rtl"
     tools:context=".MainActivity">
 
-
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/uthmanic_hafs_ver12"
+        android:gravity="top"
+        android:maxLines="14"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:textDirection="anyRtl"
+        tools:text="سورة الفاتحة"
+        />
     <TextView
         android:id="@+id/multiAutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/uthmanic_hafs_ver12"
         android:gravity="center"
-        android:maxLines="7"
-        android:textSize="24sp"
+        android:maxLines="14"
+        android:textSize="20sp"
         android:textColor="@color/colorPrimary"
           android:layout_margin="16dp"
         android:textDirection="anyRtl" />

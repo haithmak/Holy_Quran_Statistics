@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import jxl.Cell;
 import jxl.Sheet;
@@ -19,11 +22,34 @@ import jxl.read.biff.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.UUID;
 
 public class MainActivity extends SingleFragmentActivity {
     TextView tx ;
     String TAG ="main";
 
+
+    public static final String EXTRA_SURH_ID = "SURH_ID";
+    public static final String EXTRA_AYHT_COUNT = "AYHT_COUNT";
+    public static final String EXTRA_AYH_START = "FROM";
+   // public static final int x = 0;
+
+    public static Intent newIntent(Context packageContext, String surhID , String surhayhNumbers , String ayhStart) {
+
+        Intent intent = new Intent(packageContext, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_SURH_ID, surhID);
+        bundle.putString(EXTRA_AYHT_COUNT, surhayhNumbers);
+        bundle.putString(EXTRA_AYH_START, ayhStart);
+        intent.putExtras(bundle);
+
+        //intent.putExtra(EXTRA_SURH_ID, surhID);
+        //intent.putExtra(EXTRA_AYHT_COUNT, surhayhNumbers);
+        //intent.putExtra(EXTRA_AYH_START, ayhStart);
+
+
+        return intent;
+    }
     @Override
     protected Fragment createFragment() {
         return new QuranFragment();
