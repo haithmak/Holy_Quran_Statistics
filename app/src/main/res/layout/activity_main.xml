@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:orientation="vertical"
+    android:orientation="vertical"
     android:layout_margin="16dp"
     android:layoutDirection="rtl"
     android:background="@android:color/background_light"
@@ -16,19 +16,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/uthmanic_hafs_ver12"
         android:gravity="top"
-        android:maxLines="14"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
-        android:textDirection="anyRtl"
         tools:text="سورة الفاتحة"
         />
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="next"
-        />
+
     <TextView
         android:id="@+id/multiAutoCompleteTextView"
         android:layout_width="match_parent"
@@ -38,7 +31,7 @@
         android:maxLines="14"
         android:textSize="20sp"
         android:textColor="@color/colorPrimary"
-          android:layout_margin="16dp"
-        android:textDirection="anyRtl" />
+        android:layout_margin="16dp"
+         />
 
 </LinearLayout>

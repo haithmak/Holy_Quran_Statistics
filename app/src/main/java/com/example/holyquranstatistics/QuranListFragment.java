@@ -78,6 +78,7 @@ public class QuranListFragment extends Fragment {
         public void onBindViewHolder(@NonNull QuraneHolder holder, int position) {
             int st_read=1;
             Quran quran = mQurans.get(position);
+
             for (int i=0; i<position;i++){
                 st_read +=Integer.parseInt(mQurans.get(i).getSurhayhNumbers()) ;
             }
@@ -130,9 +131,11 @@ public class QuranListFragment extends Fragment {
 
             //startActivity(intent);
 
-            Intent intent = SurhPagerActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,String.valueOf(startSurhFrom) );
-
+            Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,String.valueOf(startSurhFrom) );
+           // Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId());
             startActivity(intent);
+
+
 
         }
     }

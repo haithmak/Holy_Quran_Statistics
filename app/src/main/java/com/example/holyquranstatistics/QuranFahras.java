@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import jxl.Cell;
@@ -139,9 +140,9 @@ public class QuranFahras {
         return mQurans;
     }
 
-    public Quran getFahrass(String id) {
+    public Quran getFahrass(UUID id) {
         for (Quran q : mQurans) {
-            if (q.getSurhNumber().equals(id)) {
+            if (q.getId().equals(id)) {
                 return q;
             }
         }

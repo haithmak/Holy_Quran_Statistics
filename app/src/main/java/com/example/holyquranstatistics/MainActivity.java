@@ -28,7 +28,7 @@ public class MainActivity extends SingleFragmentActivity {
     TextView tx ;
     String TAG ="main";
 
-
+/*
     public static final String EXTRA_SURH_ID = "SURH_ID";
     public static final String EXTRA_SURH_NAME = "COW";
     public static final String EXTRA_AYHT_COUNT = "AYHT_COUNT";
@@ -52,8 +52,16 @@ public class MainActivity extends SingleFragmentActivity {
 
         return intent;
     }
+    */
+
     @Override
     protected Fragment createFragment() {
+
+
+
+
+
+
         return new QuranFragment();
     }
 

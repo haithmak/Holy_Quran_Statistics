@@ -1,12 +1,23 @@
 package com.example.holyquranstatistics;
 
-public class Quran {
+import java.util.UUID;
 
+public class Quran {
+    private UUID mId;
     private String surhName;
     private String surhNumber;
     private String surhayhNumbers;
     private String ayhNumber;
     private String surhtype;
+
+
+    public Quran(){
+        mId = UUID.randomUUID();
+    }
+
+    public UUID getId() {
+        return mId;
+    }
 
     public String getSurhayhNumbers() {
         return surhayhNumbers;

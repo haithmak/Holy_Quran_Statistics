@@ -16,10 +16,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_quran);
 
-
         FragmentManager fm = getSupportFragmentManager();
-
-
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
 
         if (fragment == null) {
