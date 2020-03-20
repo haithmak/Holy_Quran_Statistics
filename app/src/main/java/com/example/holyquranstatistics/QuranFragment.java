@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +23,46 @@ import jxl.read.biff.BiffException;
 
 public class QuranFragment extends Fragment {
     TextView tx , txSurhTitle ;
+    Button bNext ;
+
+
     Quran mQuran;
 
     int surhId  , startSurhFrom=0 ,surhayhCount =0 , finshSurh=0;
     Bundle bundle ;
+    private static final String ARG_SURH_ID = "surh_Id";
+
+
+
+
+    public static QuranFragment newInstance(String surhId) {
+        QuranFragment fragment = new QuranFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_SURH_ID, surhId);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle args = getArguments() ;
+        String S_Id = "0" ;
+
+
+
+
+        if(args != null)
+        {
+             S_Id = (String) getArguments().getSerializable(ARG_SURH_ID);
+            mQuran = QuranFahras.get(getActivity()).getFahrass(S_Id);
+        }
+
+      //  String surh_Id = (String) getArguments().getSerializable(ARG_SURH_ID);
+        Toast.makeText(getActivity(), ""+ S_Id, Toast.LENGTH_SHORT).show();
+
+
     }
 
     @Nullable
@@ -40,37 +73,49 @@ public class QuranFragment extends Fragment {
 
         bundle = getActivity().getIntent().getExtras();
 
-        surhId = bundle.getInt(MainActivity.EXTRA_SURH_ID);
+        surhId = Integer.parseInt(bundle.getString(MainActivity.EXTRA_SURH_ID));
 
         String surhName = bundle.getString(MainActivity.EXTRA_SURH_NAME);
 
         surhayhCount = Integer.parseInt(bundle.getString(MainActivity.EXTRA_AYHT_COUNT));
 
-        startSurhFrom = bundle.getInt(MainActivity.EXTRA_AYH_START);
-
-
+        startSurhFrom =  Integer.parseInt(bundle.getString(MainActivity.EXTRA_AYH_START));
 
 
         finshSurh= surhayhCount + startSurhFrom ;
 
-        Toast.makeText(getActivity(),  "Id= " + surhId + " Count = " + finshSurh , Toast.LENGTH_SHORT) .show();
+       // Toast.makeText(getActivity(),  "Id= " + surhId + " Count = " + finshSurh , Toast.LENGTH_SHORT) .show();
       // mQuran = QuranFahras.get(getActivity()).getFahras(surhId);
 
 
         tx = (TextView) v.findViewById(R.id.multiAutoCompleteTextView) ;
         txSurhTitle= (TextView) v.findViewById(R.id.Surh_title) ;
-
+        bNext = (Button ) v.findViewById(R.id.nextButton) ;
 
 
         tx.setText(readAyh(surhId));
         txSurhTitle.setText("سورة " + surhName);
 
 
+        // Toast.makeText(getActivity(),  " tx.getLineCount()= " +  xx , Toast.LENGTH_SHORT) .show();
+        bNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
+
         return v;
     }
 
 
-    public String readAyh( int surhId) {
+    public String readAyh( int id) {
+
+
+        int surhId = (int) id ;
         AssetManager  am = getActivity().getAssets();
         Workbook workbook = null;
         try {
@@ -96,7 +141,7 @@ public class QuranFragment extends Fragment {
                 startSurhFrom+=surhId-2 ;
             }
 
-            Toast.makeText(getActivity(),  "Str= " + startSurhFrom + " Count = " +finshSurh , Toast.LENGTH_SHORT) .show();
+            //Toast.makeText(getActivity(),  "Str= " + startSurhFrom + " Count = " +finshSurh , Toast.LENGTH_SHORT) .show();
 
             for (int j = startSurhFrom ; j < finshSurh ; j++){
 
@@ -109,7 +154,6 @@ public class QuranFragment extends Fragment {
             }
             startSurhFrom=0;
             surhId=0;
-
 
             return xx;
 

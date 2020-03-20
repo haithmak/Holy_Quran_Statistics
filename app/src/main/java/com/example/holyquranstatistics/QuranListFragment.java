@@ -38,13 +38,24 @@ public class QuranListFragment extends Fragment {
 
     }
 
-    private void updateUI() {
-        QuranFahras quranFahras = QuranFahras.get(getActivity());
-      //  Toast.makeText(getActivity(), "the size is "+quranFahras.getFahras().size(), Toast.LENGTH_SHORT).show();
-        List<Quran> quranList = quranFahras.getFahras();
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
 
-        mAdapter = new QuranAdapter(quranList);
-        mCrimeRecyclerView.setAdapter(mAdapter);
+    private void updateUI() {
+
+        QuranFahras quranFahras = QuranFahras.get(getActivity());
+        List<Quran> quranList = quranFahras.getFahras();
+        if (mAdapter == null) {
+            mAdapter = new QuranAdapter(quranList);
+            mCrimeRecyclerView.setAdapter(mAdapter);
+        }
+        else {
+        mAdapter.notifyDataSetChanged();
+        }
+
     }
 
 
@@ -113,14 +124,13 @@ public class QuranListFragment extends Fragment {
         }
         @Override
         public void onClick(View v) {
-           // String [] ayhtCount = mQuran.getSurhayhNumbers().split(":");
-
-         //   Toast.makeText(getActivity(),  "Id= " + mQuran.getSurhNumber() + " Count = " + mQuran.getSurhayhNumbers() + "Start = "+ StartAyhFrom + " clicked!", Toast.LENGTH_SHORT) .show();
 
 
-         //   Intent intent = MainActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhayhNumbers() , StartAyhFrom);
+          //  Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
 
-            Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
+            //startActivity(intent);
+
+            Intent intent = SurhPagerActivity.newIntent(getActivity(), mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,String.valueOf(startSurhFrom) );
 
             startActivity(intent);
 

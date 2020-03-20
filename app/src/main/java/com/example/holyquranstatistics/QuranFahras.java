@@ -23,8 +23,6 @@ public class QuranFahras {
 
     private List<Quran> mQurans;
 
-    List<Quran> mQuranFahras ;
-
     public static QuranFahras get(Context context) {
         if (sQuranFahras == null) {
             sQuranFahras = new QuranFahras(context);
@@ -35,7 +33,6 @@ public class QuranFahras {
     private QuranFahras(Context context) {
 
         mQurans = new ArrayList<>();
-        mQuranFahras =new ArrayList<>() ;
 
         AssetManager am = context.getAssets();
         Workbook workbook = null;
@@ -139,9 +136,17 @@ public class QuranFahras {
 
     public List<Quran> getFahras() {
 
-
-
         return mQurans;
+    }
+
+    public Quran getFahrass(String id) {
+        for (Quran q : mQurans) {
+            if (q.getSurhNumber().equals(id)) {
+                return q;
+            }
+        }
+
+        return null;
     }
 
 

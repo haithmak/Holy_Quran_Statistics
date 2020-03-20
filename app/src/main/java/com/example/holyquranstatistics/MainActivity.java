@@ -49,10 +49,6 @@ public class MainActivity extends SingleFragmentActivity {
         bundle.putInt(EXTRA_AYH_START, startSurhFrom);
         intent.putExtras(bundle);
 
-        //intent.putExtra(EXTRA_SURH_ID, surhID);
-        //intent.putExtra(EXTRA_AYHT_COUNT, surhayhNumbers);
-        //intent.putExtra(EXTRA_AYH_START, ayhStart);
-
 
         return intent;
     }
