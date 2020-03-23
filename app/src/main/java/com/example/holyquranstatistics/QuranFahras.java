@@ -26,7 +26,7 @@ public class QuranFahras {
 
     public static QuranFahras get(Context context) {
         if (sQuranFahras == null) {
-            sQuranFahras = new QuranFahras(context);
+                sQuranFahras = new QuranFahras(context);
         }
         return sQuranFahras;
     }
@@ -47,23 +47,33 @@ public class QuranFahras {
             int cols = s.getColumns();
             Cell sid =null;
             Cell sna =null;
-            Cell sAyhCount =null;
+            Cell sAyhCount =null , sAyhCountL;
             Cell sType =null;
+            Cell surhStartC , surhEndC ;
+
+
             int i =0 , j= 0 ;
+
             Quran quran = null;
-            for ( i = 1; i < row  ; i++) {
+
+            for ( i = 1; i < 5 ; i++) {
                  quran = new Quran();
 
-                     sid = s.getCell(1, i);
-                     sna = s.getCell( 0, i);
+                     sna = s.getCell(1, i);
+                     sid  = s.getCell( 0, i);
                      sAyhCount= s.getCell( 2, i);
                      sType= s.getCell( 3, i);
 
-
-                    quran.setSurhName(sid.getContents());
-                    quran.setSurhNumber(sna.getContents());
+                    quran.setSurhNumber(sid.getContents());
+                    quran.setSurhName(sna.getContents());
                     quran.setSurhayhNumbers(sAyhCount.getContents());
                     quran.setSurhtype(sType.getContents());
+
+                    surhStartC= s.getCell( 4, i);
+                    surhEndC= s.getCell( 5, i);
+
+                    quran.setSurhStart(Integer.parseInt(surhStartC.getContents()) );
+                    quran.setSurhEnd(Integer.parseInt(surhEndC.getContents()));
 
                     mQurans.add(quran);
 
@@ -91,37 +101,6 @@ public class QuranFahras {
             }*/
 
 
-
-
-
-
-
-
-
-
-/*
-            if(mQurans.size() > 2)
-            {
-                for(Quran q: mQurans){
-                    //  Toast.makeText(context, q.getSurhNumber()+"mm", Toast.LENGTH_SHORT).show();
-                    if(!(q.getSurhName().contains(sna.getContents()))){
-
-                        //  quran.setSurhNumber(sna.getContents());
-
-                        //      Toast.makeText(context,"" + mQurans.contains(quran)  ,Toast.LENGTH_SHORT).show();
-
-                        mQurans.add(quran);
-                    }
-                }
-            }*/
-
-
-
-
-
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (BiffException e) {
@@ -136,7 +115,6 @@ public class QuranFahras {
 
 
     public List<Quran> getFahras() {
-
         return mQurans;
     }
 

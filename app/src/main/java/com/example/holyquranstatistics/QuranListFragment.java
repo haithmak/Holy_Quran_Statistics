@@ -47,9 +47,36 @@ public class QuranListFragment extends Fragment {
     private void updateUI() {
 
         QuranFahras quranFahras = QuranFahras.get(getActivity());
+
         List<Quran> quranList = quranFahras.getFahras();
+
+        List<Quran>  mQuranFahras= new ArrayList<Quran>() ;
+
+
+
+        for (int i = 0; i < quranList.size(); i++)
+        {
+            boolean isDistinct = false;
+            for (int j = 0; j < i; j++)
+            {
+                if (quranList.get( i ).getSurhNumber().equals(quranList.get( j ).getSurhNumber()))
+                {
+                    isDistinct = true;
+
+                    break;
+                }
+            }
+            if (!isDistinct)
+            {
+                mQuranFahras.add(quranList.get(i));
+            }
+            //  Toast.makeText(context,  "  surah Id = " + isDistinct , Toast.LENGTH_SHORT).show();
+        }
+
+
+
         if (mAdapter == null) {
-            mAdapter = new QuranAdapter(quranList);
+            mAdapter = new QuranAdapter(mQuranFahras);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }
         else {
@@ -76,15 +103,9 @@ public class QuranListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull QuraneHolder holder, int position) {
-            int st_read=1;
             Quran quran = mQurans.get(position);
 
-            for (int i=0; i<position;i++){
-                st_read +=Integer.parseInt(mQurans.get(i).getSurhayhNumbers()) ;
-            }
-
-
-            holder.bind(quran ,st_read) ;
+            holder.bind(quran) ;
         }
 
         @Override
@@ -102,7 +123,7 @@ public class QuranListFragment extends Fragment {
         private TextView mSurahTypeTextView;
 
         private Quran mQuran;
-        private int startSurhFrom ;
+
 
 
         public QuraneHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -115,13 +136,13 @@ public class QuranListFragment extends Fragment {
             mSurahTypeTextView =  (TextView) itemView.findViewById(R.id.surh_type) ;
         }
 
-        public void bind(Quran quran , int i) {
+        public void bind(Quran quran) {
             mQuran = quran;
             mSurahNameTextView.setText("سورة "+mQuran.getSurhName());
             mSurahIdTextView.setText(mQuran.getSurhNumber());
             mSurahAyhNoTextView.setText("عدد الآيات : "+mQuran.getSurhayhNumbers());
             mSurahTypeTextView.setText(mQuran.getSurhtype());
-            startSurhFrom= i ;
+
         }
         @Override
         public void onClick(View v) {
@@ -131,7 +152,7 @@ public class QuranListFragment extends Fragment {
 
             //startActivity(intent);
 
-            Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,String.valueOf(startSurhFrom) );
+            Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,mQuran.getSurhStart() , mQuran.getSurhEnd() );
            // Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId());
             startActivity(intent);
 

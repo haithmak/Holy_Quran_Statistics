@@ -4,11 +4,33 @@ import java.util.UUID;
 
 public class Quran {
     private UUID mId;
-    private String surhName;
     private String surhNumber;
+    private String surhName;
     private String surhayhNumbers;
     private String ayhNumber;
     private String surhtype;
+    private int surhStart ;
+    private int surhEnd ;
+
+
+    public int getSurhStart() {
+        return surhStart;
+    }
+
+    public void setSurhStart(int surhStart) {
+        this.surhStart = surhStart;
+    }
+
+    public int getSurhEnd() {
+        return surhEnd;
+    }
+
+    public void setSurhEnd(int surhEnd) {
+        this.surhEnd = surhEnd;
+    }
+
+
+
 
 
     public Quran(){
