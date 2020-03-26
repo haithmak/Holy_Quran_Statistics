@@ -8,7 +8,6 @@
     android:orientation="vertical"
     android:layout_margin="16dp"
     android:layoutDirection="rtl"
-    android:background="@android:color/background_light"
     tools:context=".MainActivity">
 
     <TextView
@@ -21,6 +20,7 @@
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
         tools:text="سورة الفاتحة"
+        android:background="@drawable/sourh_pager"
         />
 
     <TextView
@@ -29,9 +29,9 @@
         android:layout_height="match_parent"
         android:fontFamily="@font/uthmanic_hafs_ver12"
         android:gravity="center"
-        android:maxLines="14"
+        android:maxLines="15"
         android:textSize="20sp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/Nice_Color"
         android:layout_margin="16dp"
          />
 

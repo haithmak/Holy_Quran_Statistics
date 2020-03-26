@@ -3,5 +3,6 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_shadow_start_color"
+    android:background="@color/Gray50"
+    android:layoutDirection="rtl"
     />

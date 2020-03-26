@@ -17,6 +17,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -34,7 +38,9 @@ public class SurhPagerActivity extends AppCompatActivity {
     public static final String EXTRA_SURH_PAGE_END = "END";
     public static final String EXTRA_AYHT = "FROM" ;
 
-    private ViewPager mViewPager;
+    private ViewPager2 mViewPager;
+
+
     private List<Quran> mQurans;
 
     FragmentManager fragmentManager ;
@@ -64,13 +70,35 @@ public class SurhPagerActivity extends AppCompatActivity {
 
         SID = (UUID) getIntent().getSerializableExtra(EXTRA_ID);
 
-        mViewPager = (ViewPager) findViewById(R.id.surh_view_pager);
+        mViewPager = findViewById(R.id.surh_view_pager);
 
         mQurans = QuranFahras.get(this).getFahras();
 
         fragmentManager = getSupportFragmentManager();
 
+        mViewPager.setAdapter(new FragmentStateAdapter(this) {
+            @NonNull
+            @Override
+            public Fragment createFragment(int position) {
+                Quran quran = mQurans.get(position);
+                return QuranFragment.newInstance(quran.getId());
+            }
 
+            @Override
+            public int getItemCount() {
+                return mQurans.size();
+            }
+        });
+
+        for (int i = 0; i < mQurans.size(); i++) {
+            if (mQurans.get(i).getId().equals(SID) ){
+                mViewPager.setCurrentItem(i);
+
+                break;
+            }
+        }
+
+/*
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
 
@@ -86,18 +114,15 @@ public class SurhPagerActivity extends AppCompatActivity {
                 Quran quran = mQurans.get(position);
                 return QuranFragment.newInstance(quran.getId());
             }
-        });
+        });*/
 
 
 
 
-        for (int i = 0; i < mQurans.size(); i++) {
-            if (mQurans.get(i).getId().equals(SID) ){
-                mViewPager.setCurrentItem(i);
 
-                break;
-            }
-        }
+
+
+
 
 
 

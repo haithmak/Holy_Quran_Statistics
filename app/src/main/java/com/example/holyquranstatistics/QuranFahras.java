@@ -37,6 +37,7 @@ public class QuranFahras {
 
         AssetManager am = context.getAssets();
         Workbook workbook = null;
+        int i =0 , j= 0 ;
 
         try {
             InputStream is = am.open("DB.xls");
@@ -50,30 +51,36 @@ public class QuranFahras {
             Cell sAyhCount =null , sAyhCountL;
             Cell sType =null;
             Cell surhStartC , surhEndC ;
+            int pageAyhCount =0 ;
 
-
-            int i =0 , j= 0 ;
 
             Quran quran = null;
 
-            for ( i = 1; i < 5 ; i++) {
+            for ( i = 1; i < 50 ; i++) {
                  quran = new Quran();
 
-                     sna = s.getCell(1, i);
+
                      sid  = s.getCell( 0, i);
+                     sna = s.getCell(1, i);
+
                      sAyhCount= s.getCell( 2, i);
                      sType= s.getCell( 3, i);
 
                     quran.setSurhNumber(sid.getContents());
                     quran.setSurhName(sna.getContents());
+
                     quran.setSurhayhNumbers(sAyhCount.getContents());
+
+
+
                     quran.setSurhtype(sType.getContents());
 
                     surhStartC= s.getCell( 4, i);
                     surhEndC= s.getCell( 5, i);
 
-                    quran.setSurhStart(Integer.parseInt(surhStartC.getContents()) );
-                    quran.setSurhEnd(Integer.parseInt(surhEndC.getContents()));
+                     quran.setSurhStart(Integer.parseInt(surhStartC.getContents()));
+                     quran.setSurhEnd(Integer.parseInt(surhEndC.getContents()));
+
 
                     mQurans.add(quran);
 
