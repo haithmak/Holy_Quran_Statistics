@@ -40,7 +40,7 @@ public class TabActivity extends AppCompatActivity {
                            tab.setIcon(R.drawable.circle) ;
                     break;
                     case 1 :
-                          tab.setText("فهرس الجمل");
+                          tab.setText("فهرس الجُمَّل");
                         break;
 
                 }

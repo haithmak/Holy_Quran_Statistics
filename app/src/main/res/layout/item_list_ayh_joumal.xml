@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/background_light"
+        >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+              >
+
+            <TextView
+                android:id="@+id/ayh_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:fontFamily="@font/uthmanic_hafs_ver12"
+                android:textColor="@color/textColorEarthquakeLocation"
+                android:textAppearance="?android:textAppearanceMedium"
+                tools:text="إِنَّ اللَّهَ لاَ يَسْتَحْيِي أَن يَضْرِبَ مَثَلاً مَّا بَعُوضَةً فَمَا فَوْقَهَا فَأَمَّا الَّذِينَ آمَنُواْ فَيَعْلَمُونَ أَنَّهُ الْحَقُّ مِن رَّبِّهِمْ وَأَمَّا الَّذِينَ كَفَرُواْ فَيَقُولُونَ مَاذَا أَرَادَ اللَّهُ بِهَـذَا مَثَلاً يُضِلُّ بِهِ كَثِيراً وَيَهْدِي بِهِ كَثِيراً وَمَا يُضِلُّ بِهِ إِلاَّ الْفَاسِقِينَ"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                            >
+                <TextView
+                    android:id="@+id/words_ayh_count"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/textColorEarthquakeDetails"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    tools:text="عدد الكلمات : 7"/>
+
+                <TextView
+                    android:id="@+id/char_ayh_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Red200"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:gravity="center"
+                    tools:text="عدد الحروف : 7"/>
+
+                <TextView
+                    android:id="@+id/joumal_ayh_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/LightBlue200"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:gravity="center"
+                    tools:text="حساب الجمل : 7"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ayh_id"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_weight="0"
+            android:layout_margin="4dp"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/uthmanic_hafs_ver12"
+            android:background="@drawable/circle"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            tools:text="1" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        />
+</LinearLayout>

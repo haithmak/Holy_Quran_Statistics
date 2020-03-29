@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-</resources>
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+
+
+    <style name="AppTheme.ActionBar.Transparent" parent="AppTheme">
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorPrimary">@color/transparent_actionbar_color</item>
+        <item name="colorPrimaryDark">@color/LimeA400</item>
+        <!--  <item name="android:windowContentOverlay">@null</item>
+         <item name="windowActionBarOverlay">true</item>-->
+     </style>
+
+
+
+ </resources>

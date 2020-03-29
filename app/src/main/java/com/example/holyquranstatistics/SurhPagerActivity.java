@@ -74,7 +74,6 @@ public class SurhPagerActivity extends AppCompatActivity {
 
         mQurans = QuranFahras.get(this).getFahras();
 
-        fragmentManager = getSupportFragmentManager();
 
         mViewPager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
@@ -97,33 +96,6 @@ public class SurhPagerActivity extends AppCompatActivity {
                 break;
             }
         }
-
-/*
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
-
-
-            @Override
-            public int getCount() {
-                return mQurans.size();
-            }
-
-            @NonNull
-            @Override
-            public Fragment getItem(int position) {
-                Quran quran = mQurans.get(position);
-                return QuranFragment.newInstance(quran.getId());
-            }
-        });*/
-
-
-
-
-
-
-
-
-
 
 
     }

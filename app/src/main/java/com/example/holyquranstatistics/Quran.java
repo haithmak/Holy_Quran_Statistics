@@ -11,7 +11,27 @@ public class Quran {
     private String surhtype;
     private int surhStart ;
     private int surhEnd ;
+    private int surhwordsCount ;
+    private int surhJoumal ;
 
+
+    private String jzaNumber;
+
+    public int getSurhwordsCount() {
+        return surhwordsCount;
+    }
+
+    public void setSurhwordsCount(int surhwordsCount) {
+        this.surhwordsCount = surhwordsCount;
+    }
+
+    public int getSurhJoumal() {
+        return surhJoumal;
+    }
+
+    public void setSurhJoumal(int surhJoumal) {
+        this.surhJoumal = surhJoumal;
+    }
 
     public int getSurhStart() {
         return surhStart;
@@ -29,10 +49,6 @@ public class Quran {
         this.surhEnd = surhEnd;
     }
 
-
-
-
-
     public Quran(){
         mId = UUID.randomUUID();
     }
@@ -48,10 +64,6 @@ public class Quran {
     public void setSurhayhNumbers(String surhayhNumbers) {
         this.surhayhNumbers = surhayhNumbers;
     }
-
-    private String jzaNumber;
-
-
 
 
     public String getSurhName() {

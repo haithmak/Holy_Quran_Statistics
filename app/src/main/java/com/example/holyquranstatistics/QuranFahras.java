@@ -24,6 +24,8 @@ public class QuranFahras {
 
     private List<Quran> mQurans;
 
+
+
     public static QuranFahras get(Context context) {
         if (sQuranFahras == null) {
                 sQuranFahras = new QuranFahras(context);
@@ -59,7 +61,6 @@ public class QuranFahras {
             for ( i = 1; i < 50 ; i++) {
                  quran = new Quran();
 
-
                      sid  = s.getCell( 0, i);
                      sna = s.getCell(1, i);
 
@@ -70,8 +71,6 @@ public class QuranFahras {
                     quran.setSurhName(sna.getContents());
 
                     quran.setSurhayhNumbers(sAyhCount.getContents());
-
-
 
                     quran.setSurhtype(sType.getContents());
 
@@ -86,26 +85,6 @@ public class QuranFahras {
 
             }
 
-
-/*
-            for ( i = 0; i < mQurans.size(); i++)
-            {
-                boolean isDistinct = false;
-                for ( j = 0; j < i; j++)
-                {
-                    if (mQurans.get( i ).getSurhNumber().equals(mQurans.get( j ).getSurhNumber()))
-                    {
-                        isDistinct = true;
-
-                        break;
-                    }
-                }
-                if (!isDistinct)
-                {
-                    mQuranFahras.add(mQurans.get(i));
-                                    }
-              //  Toast.makeText(context,  "  surah Id = " + isDistinct , Toast.LENGTH_SHORT).show();
-            }*/
 
 
         } catch (IOException e) {
@@ -122,8 +101,45 @@ public class QuranFahras {
 
 
     public List<Quran> getFahras() {
+
         return mQurans;
     }
+
+
+
+    public List<Quran> getFahrasJoumal() {
+        List<Quran> mQuranFahras= new ArrayList<Quran>() ;
+
+        for (int i = 0; i < mQurans.size(); i++)
+        {
+            boolean isDistinct = false;
+            for (int j = 0; j < i; j++)
+            {
+                if (mQurans.get( i ).getSurhNumber().equals(mQurans.get( j ).getSurhNumber()))
+                {
+                    isDistinct = true;
+                    break;
+                }
+            }
+            if (!isDistinct)
+            {
+                mQuranFahras.add(mQurans.get(i));
+            }
+
+        }
+
+
+
+
+        return mQuranFahras;
+    }
+
+
+
+
+
+
+
 
     public Quran getFahrass(UUID id) {
         for (Quran q : mQurans) {

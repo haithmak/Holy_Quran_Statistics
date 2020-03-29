@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/background_light"
+        >
+        <TextView
+            android:id="@+id/surah_id"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="0"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="1" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+
+            android:paddingRight="12dp"
+            >
+
+            <TextView
+                android:id="@+id/surah_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/textColorEarthquakeLocation"
+                android:textAppearance="?android:textAppearanceMedium"
+                tools:text="سورة الفاتحة"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                >
+            <TextView
+                android:id="@+id/ayh_count"
+                android:layout_width="0dp"
+                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/textColorEarthquakeDetails"
+                android:textStyle="bold"
+
+                android:textAppearance="?android:textAppearanceSmall"
+                tools:text="عدد الآيات : 7"/>
+
+                <TextView
+                    android:id="@+id/sourh_count_words"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/Red200"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:gravity="center"
+                    tools:text="عدد الكلمات : 7"/>
+
+                <TextView
+                    android:id="@+id/sourh_joumal_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:textColor="@color/LightBlue200"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:gravity="center"
+                    tools:text="حساب الجمل : 7"/>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/surh_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/textColorEarthquakeLocation"
+            android:textAppearance="?android:textAppearanceSmall"
+            tools:text="مكية"/>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        />
+</LinearLayout>

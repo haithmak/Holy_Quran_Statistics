@@ -1,5 +1,6 @@
 package com.example.holyquranstatistics;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -7,7 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +47,7 @@ public class QuranFragment extends Fragment {
     public static final String EXTRA_AYH_START = "FROM";
 
 
-    public static QuranFragment newInstance(UUID Id ) {
+    public static QuranFragment newInstance(UUID Id) {
             QuranFragment fragment = new QuranFragment();
             Bundle args = new Bundle();
             args.putSerializable(EXTRA_ID, Id);
@@ -90,6 +93,24 @@ public class QuranFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.activity_main, container, false);
 
+        /*
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+        //make translucent statusBar on kitkat devices
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+            setWindowFlag( getActivity(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true);
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+        //make fully Android Transparent Status bar
+        if (Build.VERSION.SDK_INT >= 21) {
+            setWindowFlag( getActivity(), WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+            getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        }*/
+
         tx = (TextView) v.findViewById(R.id.multiAutoCompleteTextView) ;
         txSurhTitle= (TextView) v.findViewById(R.id.Surh_title) ;
 
@@ -108,6 +129,7 @@ public class QuranFragment extends Fragment {
         finshSurh =  mQuran.getSurhEnd(); ;
 
 
+
         tx.setText(readAyh(startSurhFrom ,finshSurh ));
 
         txSurhTitle.setText("سورة " + surhName);
@@ -118,6 +140,7 @@ public class QuranFragment extends Fragment {
 
 
         return v;
+
     }
 
 
@@ -232,6 +255,14 @@ public class QuranFragment extends Fragment {
 
 
 
+    protected void onSystemUiHidden() {
+        ActionBar ab = getActivity().getActionBar();
+        if (ab != null) {
+            ab.hide();
+        }
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+       // setIsShowing(false);
+    }
 
 
     }

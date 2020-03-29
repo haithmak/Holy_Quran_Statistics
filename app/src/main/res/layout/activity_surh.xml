@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:layout_margin="16dp"
     android:layoutDirection="rtl"
-    android:background="@drawable/sliding_panel_above_shadow"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/Gray200">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="0"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@mipmap/border" />
 
     <LinearLayout
@@ -22,6 +22,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:baselineAligned="false"
+        android:layout_margin="8dp"
         android:layoutDirection="rtl"
         android:orientation="vertical">
 
@@ -29,13 +30,12 @@
             android:id="@+id/Surh_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:background="@drawable/sourh_pager"
             android:fontFamily="@font/uthmanic_hafs_ver12"
             android:gravity="top"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
-            android:textStyle="bold"
             tools:text="سورة الفاتحة" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:gravity="center"
             android:maxLines="15"
             android:textColor="@color/Nice_Color"
-            android:textSize="18sp"
+            android:textSize="20sp"
 
             />
 

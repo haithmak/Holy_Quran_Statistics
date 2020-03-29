@@ -31,7 +31,7 @@ public class QuranListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_quran_list, container, false);
 
-        mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
+        mCrimeRecyclerView = view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
         return view;
@@ -48,39 +48,16 @@ public class QuranListFragment extends Fragment {
 
         QuranFahras quranFahras = QuranFahras.get(getActivity());
 
-        List<Quran> quranList = quranFahras.getFahras();
+        List<Quran> quranList = quranFahras.getFahrasJoumal();
 
-        List<Quran>  mQuranFahras= new ArrayList<Quran>() ;
-
-
-
-        for (int i = 0; i < quranList.size(); i++)
-        {
-            boolean isDistinct = false;
-            for (int j = 0; j < i; j++)
-            {
-                if (quranList.get( i ).getSurhNumber().equals(quranList.get( j ).getSurhNumber()))
-                {
-                    isDistinct = true;
-
-                    break;
-                }
-            }
-            if (!isDistinct)
-            {
-                mQuranFahras.add(quranList.get(i));
-            }
-            //  Toast.makeText(context,  "  surah Id = " + isDistinct , Toast.LENGTH_SHORT).show();
-        }
-
-
+       // List<Quran>  mQuranFahras= new ArrayList<Quran>() ;
 
         if (mAdapter == null) {
-            mAdapter = new QuranAdapter(mQuranFahras);
+            mAdapter = new QuranAdapter(quranList);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }
         else {
-        mAdapter.notifyDataSetChanged();
+             mAdapter.notifyDataSetChanged();
         }
 
     }
@@ -121,9 +98,7 @@ public class QuranListFragment extends Fragment {
         private TextView mSurahIdTextView;
         private TextView mSurahAyhNoTextView;
         private TextView mSurahTypeTextView;
-
         private Quran mQuran;
-
 
 
         public QuraneHolder(LayoutInflater inflater, ViewGroup parent) {
