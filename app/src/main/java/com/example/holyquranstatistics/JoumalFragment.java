@@ -21,7 +21,7 @@ public class JoumalFragment  extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private JoumalAyhAdapter mAdapter;
 
-    private SourhJoumal mSourhJoumal;
+   // private SourhJoumal mSourhJoumal;
     public static final String EXTRA_AYHT_COUNT = "AYHT_COUNT";
     public static final String EXTRA_SURH_START = "FROM";
 
@@ -44,12 +44,13 @@ public class JoumalFragment  extends Fragment {
 
     }
 
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+     //   ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("test");
 
-        super.onActivityCreated(savedInstanceState);
     }
+
 
     @Nullable
     @Override
@@ -76,16 +77,6 @@ public class JoumalFragment  extends Fragment {
         updateUI();
     }
 
-    @Override
-    public void onAttachFragment(@NonNull Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("test");
-    }
 
     private void updateUI() {
 
@@ -141,7 +132,7 @@ public class JoumalFragment  extends Fragment {
         private TextView mChar_ayh_countTextView;
         private TextView mJoumal_ayh_countTextView;
         private TextView mAyh_idTextView;
-        private TextView mSurhJoumalCounteTextView;
+      //  private TextView mSurhJoumalCounteTextView;
         private SourhJoumal mSourhJoumal;
 
 
@@ -174,19 +165,7 @@ public class JoumalFragment  extends Fragment {
         public void onClick(View v) {
 
 
-            // Toast.makeText(getActivity(),  "  surah Id = " +readAyh(mQuran.getSurhNumber())  , Toast.LENGTH_SHORT).show();
 
-          //  Intent intent = new Intent(getActivity() , JoumalFragment.class);
-
-    //        startActivity(intent);
-
-            //  Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
-
-            //startActivity(intent);
-
-            //  Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,mQuran.getSurhStart() , mQuran.getSurhEnd() );
-            // Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId());
-            //startActivity(intent);
 
 
 

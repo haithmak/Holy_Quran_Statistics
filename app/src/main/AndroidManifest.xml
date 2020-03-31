@@ -20,27 +20,32 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".QuranListActivity">
+        <activity android:name=".QuranListActivity"
+            android:parentActivityName=".TabActivity">
         </activity>
 
         <activity android:name=".JoumalFragment"
 
          >
 
+
+
         </activity>
 
+
         <activity android:name=".SurhPagerActivity"
-            android:parentActivityName=".TabActivity"
-        android:theme="@style/AppTheme.ActionBar.Transparent">
-     </activity>
+            android:parentActivityName=".TabActivity" >
+       </activity>
 
 
-        <activity android:name=".JoumalLiatActivity"
-            android:parentActivityName=".TabActivity"
-            ></activity>
-     <!--    <activity android:name=".MainActivity" >
+          <activity android:name=".JoumalLiatActivity"
+              android:parentActivityName=".TabActivity">
+                </activity>
+          <activity android:name=".MainActivity"
+              android:parentActivityName=".TabActivity"
+              >
 
-        </activity>-->
+          </activity>
 
            <activity android:name=".SingleFragmentActivity">
                <!-- <intent-filter>

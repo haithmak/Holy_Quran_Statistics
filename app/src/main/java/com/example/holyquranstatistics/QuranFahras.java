@@ -61,11 +61,11 @@ public class QuranFahras {
             for ( i = 1; i < 50 ; i++) {
                  quran = new Quran();
 
-                     sid  = s.getCell( 0, i);
-                     sna = s.getCell(1, i);
+                    sid  = s.getCell( 0, i);
+                    sna = s.getCell(1, i);
 
-                     sAyhCount= s.getCell( 2, i);
-                     sType= s.getCell( 3, i);
+                    sAyhCount= s.getCell( 2, i);
+                    sType= s.getCell( 3, i);
 
                     quran.setSurhNumber(sid.getContents());
                     quran.setSurhName(sna.getContents());
@@ -127,19 +127,8 @@ public class QuranFahras {
             }
 
         }
-
-
-
-
         return mQuranFahras;
     }
-
-
-
-
-
-
-
 
     public Quran getFahrass(UUID id) {
         for (Quran q : mQurans) {

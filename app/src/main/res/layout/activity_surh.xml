@@ -4,39 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="8dp"
     android:layoutDirection="rtl"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@color/Gray200">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/border" />
 
-    <LinearLayout
-
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:baselineAligned="false"
-        android:layout_margin="8dp"
-        android:layoutDirection="rtl"
-        android:orientation="vertical">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/sourh_header"
+        >
         <TextView
             android:id="@+id/Surh_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/sourh_pager"
-            android:fontFamily="@font/uthmanic_hafs_ver12"
-            android:gravity="top"
+            android:layout_centerInParent="true"
+
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
+            android:textColor="@color/header_background"
+            android:textSize="24sp"
             tools:text="سورة الفاتحة" />
+    </RelativeLayout>
+
+
 
         <TextView
             android:id="@+id/multiAutoCompleteTextView"
@@ -48,15 +39,8 @@
             android:textColor="@color/Nice_Color"
             android:textSize="20sp"
 
+
             />
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/border" />
-
-</LinearLayout>

@@ -123,12 +123,8 @@ public class QuranListFragment extends Fragment {
         public void onClick(View v) {
 
 
-          //  Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
-
-            //startActivity(intent);
-
             Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,mQuran.getSurhStart() , mQuran.getSurhEnd() );
-           // Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId());
+
             startActivity(intent);
 
 

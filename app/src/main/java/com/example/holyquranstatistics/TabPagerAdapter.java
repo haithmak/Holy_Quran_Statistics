@@ -38,7 +38,7 @@ public class TabPagerAdapter  extends FragmentStateAdapter {
                 return new JoumalListFragment() ;
 
             default:
-                return new QuranListFragment() ;
+                return null ;
         }
 
     }
@@ -47,4 +47,5 @@ public class TabPagerAdapter  extends FragmentStateAdapter {
     public int getItemCount() {
         return 2;
     }
+
 }

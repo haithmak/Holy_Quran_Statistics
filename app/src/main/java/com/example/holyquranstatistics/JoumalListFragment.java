@@ -158,13 +158,6 @@ public class JoumalListFragment extends Fragment {
             Toast.makeText(getActivity(),  "  surah Id = " +intent.getStringExtra(EXTRA_SURH_START)  , Toast.LENGTH_SHORT).show();
             startActivity(intent);
 
-            //  Intent intent = MainActivity.newIntent(getActivity(), Integer.parseInt(mQuran.getSurhNumber()) , mQuran.getSurhName() , mQuran.getSurhayhNumbers() , startSurhFrom);
-
-            //startActivity(intent);
-
-          //  Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,mQuran.getSurhStart() , mQuran.getSurhEnd() );
-            // Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId());
-            //startActivity(intent);
 
 
 

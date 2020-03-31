@@ -1,10 +1,13 @@
 package com.example.holyquranstatistics;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -37,7 +40,7 @@ public class TabActivity extends AppCompatActivity {
                 {
                     case 0 :
                            tab.setText("فهرس القرآن");
-                           tab.setIcon(R.drawable.circle) ;
+                           tab.setIcon(R.drawable.ic_goto_quran) ;
                     break;
                     case 1 :
                           tab.setText("فهرس الجُمَّل");
@@ -60,7 +63,30 @@ public class TabActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(tabviewPager) ;
         */
 
+        Toolbar mainToolbar= findViewById(R.id.Main_toolbar) ;
+        setSupportActionBar(mainToolbar);
+        getSupportActionBar().setTitle("الْقُرْآنُ والجُمَّل");
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.setting :
+                return true ;
+
+
+            case R.id.jump :
+                return true ;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

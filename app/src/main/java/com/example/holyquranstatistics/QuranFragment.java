@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -33,13 +36,13 @@ import jxl.read.biff.BiffException;
 
 public class QuranFragment extends Fragment {
 
-     TextView tx , txSurhTitle ;
+   private  TextView tx , txSurhTitle ;
 
-    Quran mQuran;
+    private Quran mQuran;
 
-    int surhId  =0 , startSurhFrom=0 ,surhayhCount =0 , finshSurh=0;
-    FragmentManager fm ;
-
+    private  int surhId  =0 , startSurhFrom=0 ,surhayhCount =0 , finshSurh=0;
+    private FragmentManager fm ;
+    private Toolbar mainToolbar ;
     public static final String EXTRA_ID = "SID";
     public static final String EXTRA_SURH_ID = "SURH_ID";
     public static final String EXTRA_SURH_NAME = "COW";
@@ -79,7 +82,6 @@ public class QuranFragment extends Fragment {
           if (args !=null)
           {
               UUID S_Id = (UUID) getArguments().getSerializable(EXTRA_ID);
-
                mQuran = QuranFahras.get(getActivity()).getFahrass(S_Id);
 
           }
@@ -87,13 +89,33 @@ public class QuranFragment extends Fragment {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                  getActivity().onBackPressed() ;
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.activity_main, container, false);
 
-        /*
+        mainToolbar= v.findViewById(R.id.Sourh_toolbar) ;
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mainToolbar);
+         mainToolbar.setTitle("سورة "+mQuran.getSurhName());
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+ /*
+
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
@@ -112,6 +134,8 @@ public class QuranFragment extends Fragment {
         }*/
 
         tx = (TextView) v.findViewById(R.id.multiAutoCompleteTextView) ;
+
+
         txSurhTitle= (TextView) v.findViewById(R.id.Surh_title) ;
 
 
@@ -131,6 +155,7 @@ public class QuranFragment extends Fragment {
 
 
         tx.setText(readAyh(startSurhFrom ,finshSurh ));
+
 
         txSurhTitle.setText("سورة " + surhName);
 
@@ -200,7 +225,7 @@ public class QuranFragment extends Fragment {
         return null;
     }
 
-    String convert_number_of_ayah (String n)
+ private String convert_number_of_ayah (String n)
     {
         String cnu , fnu="" ;
         for(int i=0 ; i < n.length(); i++)
@@ -255,14 +280,6 @@ public class QuranFragment extends Fragment {
 
 
 
-    protected void onSystemUiHidden() {
-        ActionBar ab = getActivity().getActionBar();
-        if (ab != null) {
-            ab.hide();
-        }
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-       // setIsShowing(false);
-    }
 
 
     }

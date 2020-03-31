@@ -42,9 +42,9 @@ public class SurhPagerActivity extends AppCompatActivity {
 
 
     private List<Quran> mQurans;
+    public Quran quran ;
 
-    FragmentManager fragmentManager ;
-    UUID SID ;
+    private UUID SID ;
 
     public static Intent newIntent(Context packageContext, UUID Id, String surhID , String surhName, String surhayhNumbers , int startSurhFrom , int surhEnd) {
 
@@ -79,7 +79,7 @@ public class SurhPagerActivity extends AppCompatActivity {
             @NonNull
             @Override
             public Fragment createFragment(int position) {
-                Quran quran = mQurans.get(position);
+                 quran = mQurans.get(position);
                 return QuranFragment.newInstance(quran.getId());
             }
 
@@ -87,24 +87,22 @@ public class SurhPagerActivity extends AppCompatActivity {
             public int getItemCount() {
                 return mQurans.size();
             }
+
+
         });
+
+
+
 
         for (int i = 0; i < mQurans.size(); i++) {
             if (mQurans.get(i).getId().equals(SID) ){
                 mViewPager.setCurrentItem(i);
-
                 break;
             }
         }
 
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
 
     }
-
 
 }
