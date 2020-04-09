@@ -4,9 +4,9 @@ public class SourhJoumal {
 
     private String ayhNumber;
     private String ayhText;
-    private String  ayhWordsCount ;
-    private String ayhCharCount ;
-    private String ayhJoumal ;
+    private String ayhWordsCount;
+    private String ayhCharCount;
+    private String ayhJoumal;
     private String surhayhNumbers;
 
     public String getAyhNumber() {
@@ -56,12 +56,6 @@ public class SourhJoumal {
     public void setSurhayhNumbers(String surhayhNumbers) {
         this.surhayhNumbers = surhayhNumbers;
     }
-
-
-
-
-
-
 
 
 }

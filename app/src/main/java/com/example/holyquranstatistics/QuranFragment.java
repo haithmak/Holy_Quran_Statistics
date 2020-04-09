@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,9 @@ import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
+
+import com.example.holyquranstatistics.databinding.ActivitySurhPagerBinding;
+
 public class QuranFragment extends Fragment  {
 
    private  TextView tx , txSurhTitle ;
@@ -47,14 +51,25 @@ public class QuranFragment extends Fragment  {
     private FragmentManager fm ;
     private Toolbar mainToolbar ;
     ActionBar ab ;
+    ActionBarStatus mActionBarStatus = new ActionBarStatus();
+    private ActivitySurhPagerBinding mBinding ;
+
+
     public static final String EXTRA_ID = "SID";
     public static final String EXTRA_SURH_ID = "SURH_ID";
     public static final String EXTRA_SURH_NAME = "COW";
     public static final String EXTRA_AYHT_COUNT = "AYHT_COUNT";
     public static final String EXTRA_AYH_START = "FROM";
-    private Boolean isActionBarHidden =true ;
+
+    private boolean isActionBarHidden = true ;
+
+    private RelativeLayout rHeader ;
+    public static ArrayList<Fragment> arrayList = new ArrayList<>();
+
+
 
     public static QuranFragment newInstance(UUID Id) {
+
             QuranFragment fragment = new QuranFragment();
             Bundle args = new Bundle();
             args.putSerializable(EXTRA_ID, Id);
@@ -86,9 +101,12 @@ public class QuranFragment extends Fragment  {
           if (args !=null)
           {
               UUID S_Id = (UUID) getArguments().getSerializable(EXTRA_ID);
-               mQuran = QuranFahras.get(getActivity()).getFahrass(S_Id);
 
 
+              mQuran = QueryUtilsList.get(getActivity()).getFahrass(S_Id);
+
+              Toast.makeText(getActivity(),  " start= " +  mQuran.getSurhStart() , Toast.LENGTH_SHORT).show();
+        //        isActionBarHidden = mBinding.actionBarSourh.isShown();
           }
 
 
@@ -121,12 +139,14 @@ public class QuranFragment extends Fragment  {
         View v = inflater.inflate(R.layout.activity_main, container, false);
 
         ab  =  ((AppCompatActivity)getActivity()).getSupportActionBar();
-
+        rHeader = v.findViewById(R.id.header_sourh) ;
      //   ((AppCompatActivity)getActivity()).setSupportActionBar(mainToolbar);
 
-      //  ab.setTitle("سورة "+mQuran.getSurhName());
+         ab.setTitle("سورة "+mQuran.getSurhName());
+         ab.setSubtitle("صفحة رقم  "+mQuran.getSurhPageNumber());
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("سورة "+mQuran.getSurhName());
+       // ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("سورة "+mQuran.getSurhName());
+
 
 
 
@@ -170,15 +190,17 @@ public class QuranFragment extends Fragment  {
             @Override
 
             public void onClick(View v) {
+                Toast.makeText(getActivity(),  " isActionBarHidden= " +  isActionBarHidden , Toast.LENGTH_SHORT).show();
 
-                if(isActionBarHidden) {
+
+                if(mActionBarStatus.isActionBarStatus()) {
                     ab.show();
-
-                    isActionBarHidden = false;
+                    mActionBarStatus.setActionBarStatus(false);
                 }
                 else {
                     ab.hide() ;
-                    isActionBarHidden = true;
+                    mActionBarStatus.setActionBarStatus(true);
+                  //  isActionBarHidden = true;
                 }
 
               //  ab.setTitle("سورة "+mQuran.getSurhName());
@@ -214,7 +236,7 @@ public class QuranFragment extends Fragment  {
 
         String surhName = mQuran.getSurhName() ;
 
-        surhayhCount = Integer.parseInt(mQuran.getSurhayhNumbers());
+        surhayhCount = mQuran.getSurhPageNumber();
       //  surhayhCount = Integer.parseInt(bundle.getString(SurhPagerActivity.EXTRA_AYHT_COUNT));
 
        // startSurhFrom =  Integer.parseInt(bundle.getString(SurhPagerActivity.EXTRA_AYH_START));
@@ -228,8 +250,21 @@ public class QuranFragment extends Fragment  {
 
         txSurhTitle.setText("سورة " + surhName);
 
+        txSurhTitle.setText("سورة " + surhName);
 
-     //    Toast.makeText(getActivity(),  " tx.getLineCount()= " +  tx.getText().length() , Toast.LENGTH_SHORT).show();
+        if (mQuran.getSurhPageNumber()>2)
+        {
+            rHeader.setVisibility(View.GONE);
+
+            //TextViewCompat.setAutoSizeTextTypeWithDefaults(tx,TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        }
+        else
+        {
+            rHeader.setVisibility(View.VISIBLE);
+
+            // TextViewCompat.setAutoSizeTextTypeWithDefaults(tx,TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE);
+        }
+       Toast.makeText(getActivity(),  " tx.getLineCount()= " +  finshSurh , Toast.LENGTH_SHORT).show();
 
 
 
@@ -347,8 +382,6 @@ public class QuranFragment extends Fragment  {
         return fnu;
 
     }
-
-
 
 }
 

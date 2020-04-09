@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +24,24 @@ public class JoumalFragment  extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private JoumalAyhAdapter mAdapter;
 
-   // private SourhJoumal mSourhJoumal;
+
+    public static final String EXTRA_SURH_ID = "SURH_ID";
+    public static final String EXTRA_SURH_NAME = "COW";
     public static final String EXTRA_AYHT_COUNT = "AYHT_COUNT";
     public static final String EXTRA_SURH_START = "FROM";
 
-    int surhStart;
-    int surhEnd ;
-    Intent intent ;
+
+
+    private int surhStart;
+    private int surhEnd ;
+    private  String surahName , surahId ;
+
+    private  Intent intent ;
+
+    private  ActionBar ab ;
+    private  Toolbar mainToolbar ;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +53,8 @@ public class JoumalFragment  extends Fragment {
                 surhStart= Integer.parseInt(intent.getStringExtra(EXTRA_SURH_START)) ;
                 surhEnd= Integer.parseInt(intent.getStringExtra(EXTRA_AYHT_COUNT))+1 ;
 
-
+                surahName = intent.getStringExtra(EXTRA_SURH_NAME);
+                surahId = intent.getStringExtra(EXTRA_SURH_ID);
             }
 
     }
@@ -47,7 +62,7 @@ public class JoumalFragment  extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-     //   ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("test");
+     //  ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("test");
 
     }
 
@@ -57,15 +72,20 @@ public class JoumalFragment  extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View v = inflater.inflate(R.layout.fragment_joumal_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_ayh_joumal_list, container, false);
+
+         mainToolbar = v.findViewById(R.id.ayhJoumal_toolbar) ;
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mainToolbar);
 
 
-//        getActivity().getActionBar().setTitle("yourString");
-        mCrimeRecyclerView = v.findViewById(R.id.joumal_recycler_view);
+       // getActivity().getActionBar().setTitle("yourString");
+        mCrimeRecyclerView = v.findViewById(R.id.ayhjoumal_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
         updateUI() ;
+
 
 
         return v;
@@ -80,18 +100,26 @@ public class JoumalFragment  extends Fragment {
 
     private void updateUI() {
 
-        JoumalFahras joumalFahras = JoumalFahras.get(getActivity(),surhStart,surhEnd);
 
-        List<SourhJoumal> sourhJoumal = joumalFahras.getFahras();
+
+        List<SourhJoumal> sourhJoumal = QueryUtilsList.get(getActivity()).getJoumalFahras(getActivity(),surhStart,surhEnd) ;
 
        if (mAdapter == null) {
             mAdapter = new JoumalAyhAdapter(sourhJoumal);
             mCrimeRecyclerView.setAdapter(mAdapter);
+
         }
         else {
             mAdapter.notifyDataSetChanged();
         }
 
+        mainToolbar.setTitle("سورة "+surahName);
+        mainToolbar.setSubtitle("عدد الآيات "+surhEnd);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+     //   ab  =  ((AppCompatActivity)getActivity()).getSupportActionBar();
+       // ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
 
 
@@ -148,6 +176,7 @@ public class JoumalFragment  extends Fragment {
             mJoumal_ayh_countTextView =  (TextView) itemView.findViewById(R.id.joumal_ayh_count) ;
 
             mAyh_idTextView=  (TextView) itemView.findViewById(R.id.ayh_id) ;
+
 
         }
 

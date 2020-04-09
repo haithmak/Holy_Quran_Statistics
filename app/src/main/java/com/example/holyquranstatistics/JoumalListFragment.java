@@ -1,7 +1,6 @@
 package com.example.holyquranstatistics;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
-
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 public class JoumalListFragment extends Fragment {
 
@@ -52,7 +43,12 @@ public class JoumalListFragment extends Fragment {
 
     private void updateUI() {
 
-        QuranFahras quranFahras = QuranFahras.get(getActivity());
+
+
+        List<Quran> mquranList=QueryUtilsList.get(getActivity()).getFahrasList() ;
+
+        /*
+
 
         List<Quran> quranList = quranFahras.getFahrasJoumal();
      //   List<Quran> mquranList= quranFahras.getFahrasJoumal();
@@ -65,8 +61,10 @@ public class JoumalListFragment extends Fragment {
           //  quranList.set(i, quranList.get(i)).setSurhwordsCount(Integer.parseInt(readAyh(quranList.get(i).getSurhNumber())));
         }
 
+
+         */
         if (mAdapter == null) {
-            mAdapter = new JoumalAdapter(quranList);
+            mAdapter = new JoumalAdapter(mquranList);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }
         else {
@@ -98,7 +96,6 @@ public class JoumalListFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull JoumalHolder holder, int position) {
             Quran quran = mQurans.get(position);
-
             holder.bind(quran) ;
         }
 
@@ -147,15 +144,14 @@ public class JoumalListFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-
-
-
-            Intent intent = new Intent(getActivity() , JoumalLiatActivity.class);
+            Intent intent = new Intent(getActivity() , JoumalListActivity.class);
 
             intent.putExtra(EXTRA_SURH_START ,String.valueOf(mQuran.getSurhStart())) ;
             intent.putExtra(EXTRA_AYHT_COUNT ,mQuran.getSurhayhNumbers()) ;
+            intent.putExtra( EXTRA_SURH_ID , mQuran.getSurhNumber());
+            intent.putExtra(EXTRA_SURH_NAME , mQuran.getSurhName());
 
-            Toast.makeText(getActivity(),  "  surah Id = " +intent.getStringExtra(EXTRA_SURH_START)  , Toast.LENGTH_SHORT).show();
+             Toast.makeText(getActivity(),  "  surah Id = " +intent.getStringExtra(EXTRA_SURH_START)  , Toast.LENGTH_SHORT).show();
             startActivity(intent);
 
 
@@ -163,68 +159,5 @@ public class JoumalListFragment extends Fragment {
 
         }
     }
-
-   public String readAyh( int sourhId , int c) {
-
-        AssetManager am = getActivity().getAssets();
-        Workbook workbook = null;
-        try {
-            InputStream is = am.open("DB.xls");
-            workbook = Workbook.getWorkbook(is);
-
-            Sheet s = workbook.getSheet(1);
-            int row = s.getRows();
-            int cols = s.getColumns();
-            String xx = "";
-
-            Cell ayht =null;
-            Cell ayahC =null;
-
-
-
-                    ayht= s.getCell( c, sourhId);
-
-                    //  xx += ayht.getContents() + "       " + ayahC.getContents() ;
-                    xx = ayht.getContents() ;
-
-
-
-
-            /*
-            for (int j = 1 ; j < row; j++){
-
-                sid = s.getCell( 0, j);
-                if( sid.getContents().equals(sourhId))
-                {
-                    ayht= s.getCell( 8, j);
-                    ayahC=s.getCell( 9, j);
-                  //  xx += ayht.getContents() + "       " + ayahC.getContents() ;
-                    xx = ayht.getContents() ;
-                    break;
-                }
-
-            }
-
-             */
-
-            return xx;
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (BiffException e) {
-            e.printStackTrace();
-        } finally {
-            if (workbook != null) {
-                workbook.close();
-            }
-        }
-
-        return null;
-    }
-
-
-
-
 
 }

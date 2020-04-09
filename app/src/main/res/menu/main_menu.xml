@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+
     >
     <item android:title="الإعدادات" android:id="@+id/setting" app:showAsAction="never" />
     <item android:title="انتقال سريع" android:id="@+id/jump" app:showAsAction="never" />
+    <item android:title="بحث عن" android:id="@+id/search" app:showAsAction="always"  android:icon="@drawable/ic_ab_search"/>
     <item android:title="عن التطبيق" android:id="@+id/about" app:showAsAction="never" />
+
 </menu>

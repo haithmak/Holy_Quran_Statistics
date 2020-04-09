@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
-    android:background="@color/white"
-    android:orientation="vertical"
+    android:background="@drawable/border"
     android:keepScreenOn="true"
-    >
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:padding="12dp">
 
+    <RelativeLayout
+        android:id="@+id/header_sourh"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="@drawable/ic_header_copy"
 
-
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:orientation="horizontal">
-
-
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-
-        android:orientation="vertical">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/sourh_header"
-            >
-            <TextView
-                android:id="@+id/Surh_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/uthmanic_hafs_ver12"
-                android:textAlignment="center"
-                android:textColor="@color/header_background"
-                android:textSize="24sp"
-                tools:text="سورة الفاتحة" />
-        </RelativeLayout>
-
+        >
 
         <TextView
-            android:id="@+id/multiAutoCompleteTextView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/Surh_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:fontFamily="@font/uthmanic_hafs_ver12"
-            android:gravity="center_vertical|center_horizontal"
-            android:maxLines="15"
-            android:textColor="@color/black"
-            android:textSize="20sp"
             android:textAlignment="center"
+            android:textColor="@color/header_background"
+            android:textSize="24sp"
+            tools:text="سورة الفاتحة" />
+    </RelativeLayout>
 
-            />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/uthmanic_hafs_ver12"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textAlignment="gravity"
+        app:autoSizeMaxTextSize="23sp"
+        app:autoSizeMinTextSize="20.5sp"
+        app:autoSizeStepGranularity="18sp"
+        app:autoSizeTextType="uniform"
+
+        android:hyphenationFrequency="full"
+        android:breakStrategy="high_quality"
+        android:justificationMode="inter_word"
+
+        />
+
+
+
+    <!--   android:justificationMode="inter_word"
+    app:autoSizePresetSizes="@array/autosize_text_sizes"
+    android:breakStrategy="high_quality"
+    -->
+
 
 </LinearLayout>
 
-</LinearLayout>
+

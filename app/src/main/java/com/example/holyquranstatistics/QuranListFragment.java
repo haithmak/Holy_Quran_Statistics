@@ -44,9 +44,45 @@ public class QuranListFragment extends Fragment {
         updateUI();
     }
 
+
     private void updateUI() {
 
-        QuranFahras quranFahras = QuranFahras.get(getActivity());
+
+
+        QueryUtilsList queryUtilsList = QueryUtilsList.get(getActivity());
+
+        List<Quran> quranList = queryUtilsList.getFahrasList();
+
+        List<Quran>  mQurans =  queryUtilsList.getAllPages();
+
+        for (int i=0 ; i< mQurans.size(); i++)
+        {
+            QuranFragment.arrayList.add(QuranFragment.newInstance(mQurans.get(i).getId()));
+        }
+
+
+
+      //  List<Quran> quranList = quranFahras.getFahrasJoumal();
+
+        // List<Quran>  mQuranFahras= new ArrayList<Quran>() ;
+
+        if (mAdapter == null) {
+            mAdapter = new QuranAdapter(quranList);
+            mCrimeRecyclerView.setAdapter(mAdapter);
+        }
+        else {
+            mAdapter.notifyDataSetChanged();
+        }
+
+    }
+
+    /*
+
+    private void updateUI() {
+
+
+
+
 
         List<Quran> quranList = quranFahras.getFahrasJoumal();
 
@@ -60,7 +96,7 @@ public class QuranListFragment extends Fragment {
              mAdapter.notifyDataSetChanged();
         }
 
-    }
+    }*/
 
 
     private class QuranAdapter extends RecyclerView.Adapter<QuraneHolder>  {
@@ -123,7 +159,7 @@ public class QuranListFragment extends Fragment {
         public void onClick(View v) {
 
 
-            Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() , mQuran.getSurhayhNumbers() ,mQuran.getSurhStart() , mQuran.getSurhEnd() );
+            Intent intent = SurhPagerActivity.newIntent(getActivity(),mQuran.getId() , mQuran.getSurhNumber() , mQuran.getSurhName() ,mQuran.getSurhPageNumber() , mQuran.getSurhPageNumber() ,mQuran.getSurhStart() , mQuran.getSurhEnd() );
 
             startActivity(intent);
 
